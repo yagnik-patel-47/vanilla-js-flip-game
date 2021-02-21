@@ -8,7 +8,7 @@ const restartBtn = document.querySelector("#restart")
 
 function createImgs() {
 	let imgArr = [];
-	const choices = ["bike", "car", "bicycle", "bike", "car", "bicycle"];
+	const choices = ["ninja", "player", "coder", "ninja", "player", "coder"];
 	let randomisedChoice = shuffleArray(choices);
 	for (let i = 0; i < 6; i++) {
 		const parentDiv = document.createElement("div");
@@ -18,7 +18,7 @@ function createImgs() {
 	}
 	let str;
 	imgArr.forEach((eachDiv, i) => {
-		eachDiv.firstElementChild.setAttribute("src", `img/${randomisedChoice[i]}.webp`);
+		eachDiv.firstElementChild.setAttribute("src", `img/${randomisedChoice[i]}.svg`);
 		eachDiv.firstElementChild.setAttribute("data-choice", randomisedChoice[i]);
 		eachDiv.firstElementChild.setAttribute("class", "w-1/2 m-3 opacity-0 transition duration-500");
 		eachDiv.classList.add("for-select");
