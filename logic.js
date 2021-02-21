@@ -81,11 +81,13 @@ restartBtn.addEventListener("click", () => {
 
 let counter = 0;
 
-document.images.forEach(img => {
-	img.addEventListener("load", () => {
-		counter++;
-		if (counter === 6) {
-			document.querySelector(".load-spinner").classList.add("fade-out");
-		}
-	});
+[document.images].forEach(imgP => {
+	imgP.forEach(img => {
+		img.addEventListener("load", () => {
+			counter++;
+			if (counter === 6) {
+				document.querySelector(".load-spinner").classList.add("fade-out");
+			}
+		});
+	})
 });
