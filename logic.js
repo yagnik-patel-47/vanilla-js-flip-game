@@ -59,7 +59,8 @@ function results(img) {
 			resultText.innerText = "Winner🏆";
 			resultText.classList.add("animate-bounce");
 		}
-		restartBtn.classList.remove("hidden");
+		restartBtn.classList.replace("opacity-0", "opacity-100");
+		restartBtn.classList.add("transform", "translate-y-4");
 	} else {
 		chances = chances - 1;
 	}
@@ -69,10 +70,22 @@ function results(img) {
 			resultText.innerText = "Losser🖕🏻";
 			resultText.classList.add("animate-bounce");
 		}
-		restartBtn.classList.remove("hidden");
+		restartBtn.classList.replace("opacity-0", "opacity-100");
+		restartBtn.classList.add("transform", "translate-y-4");
 	}
 } 
 
 restartBtn.addEventListener("click", () => {
 	location.reload();
 })
+
+let counter = 0;
+
+document.images.forEach(img => {
+	img.addEventListener("load", () => {
+		counter++;
+		if (counter === 6) {
+			document.querySelector(".load-spinner").classList.add("fade-out");
+		}
+	});
+});
