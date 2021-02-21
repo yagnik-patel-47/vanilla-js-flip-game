@@ -78,3 +78,16 @@ function results(img) {
 restartBtn.addEventListener("click", () => {
 	location.reload();
 })
+
+let counter = 0;
+
+[document.images].forEach(imgP => {
+	imgP.forEach(img => {
+		img.addEventListener("load", () => {
+			counter++;
+			if (counter === 6) {
+				document.querySelector(".load-spinner").classList.add("fade-out");
+			}
+		});
+	})
+});
