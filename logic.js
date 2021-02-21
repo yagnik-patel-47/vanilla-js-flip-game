@@ -18,7 +18,7 @@ function createImgs() {
 	}
 	let str;
 	imgArr.forEach((eachDiv, i) => {
-		eachDiv.firstElementChild.setAttribute("src", `img/${randomisedChoice[i]}.png`);
+		eachDiv.firstElementChild.setAttribute("src", `img/${randomisedChoice[i]}.webp`);
 		eachDiv.firstElementChild.setAttribute("data-choice", randomisedChoice[i]);
 		eachDiv.firstElementChild.setAttribute("class", "w-1/2 m-3 opacity-0 transition duration-500");
 		eachDiv.classList.add("for-select");
@@ -55,7 +55,7 @@ let chances = 2;
 
 function results(img) {
 	if (targetData && targetData === img.getAttribute("data-choice")) {
-		if (resultText.innerText !== "Losser!") {
+		if (resultText.innerText !== "Losser🖕🏻") {
 			resultText.innerText = "Winner🏆";
 			resultText.classList.add("animate-bounce");
 		}
@@ -66,7 +66,7 @@ function results(img) {
 	
 	if (chances === 0) {
 		if (resultText.innerText !== "Winner🏆") {
-			resultText.innerText = "Losser!";
+			resultText.innerText = "Losser🖕🏻";
 			resultText.classList.add("animate-bounce");
 		}
 		restartBtn.classList.remove("hidden");
