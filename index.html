@@ -14,19 +14,12 @@
 				box-sizing: border-box;
 			}
 			
-			section {
-				height: 100vh;
+			.for-select {
 				display: flex;
+				position: relative;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				padding: 1rem;
-				overflow-y: hidden;
-			}
-			
-			.for-select {
-				display: flex;
-				justify-content: center;
 				background: linear-gradient(to bottom right, #059669, #34D399);
 				border-radius: 10px;
 				transition: all .7s ease-in;
@@ -35,7 +28,7 @@
 		<title>Flip Game</title>
 	</head>
 	<body>
-		<section id="gameContainer"> 
+		<section id="gameContainer" class="h-screen flex justify-center flex-col items-center p-6 lg:p-9 xl:p-12 2xl:p-15 overflow-hidden">
 			<h2 class="text-gray-700 text-2xl font-sans mb-8 font-semibold">Flip Game</h2>
 			<div id="imgContainer" class="grid grid-rows-3 grid-cols-2 gap-2 justify-items-center"></div>
 			<div id="resultContainer"><p id="result" class="my-12 text-2xl">Click on any one</p></div>

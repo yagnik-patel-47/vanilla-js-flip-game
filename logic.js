@@ -19,8 +19,9 @@ function createImgs() {
 	let str;
 	imgArr.forEach((eachDiv, i) => {
 		eachDiv.firstElementChild.setAttribute("src", `img/${randomisedChoice[i]}.svg`);
+		eachDiv.firstElementChild.style.zIndex = "3";
 		eachDiv.firstElementChild.setAttribute("data-choice", randomisedChoice[i]);
-		eachDiv.firstElementChild.setAttribute("class", "w-1/2 m-3 opacity-0 transition duration-500");
+		eachDiv.firstElementChild.setAttribute("class", "w-1/2 xl:w-1/3 m-3 2xl:w-1/3 lg:w-1/3 opacity-0 transition duration-500");
 		eachDiv.classList.add("for-select");
 		imgContainer.appendChild(eachDiv);
 	})
@@ -38,18 +39,24 @@ function shuffleArray(array) {
 
 createImgs();
 
-const imgs = document.querySelectorAll(".for-select img");
+const imgs = document.querySelectorAll(".for-select");
 let targetData = null;
 imgs.forEach(img => {
 	img.addEventListener("click", () => {
-		img.classList.remove("opacity-0");
-		img.parentElement.style.background = "initial";
-		results(img)
-		if (targetData === null) {
-			targetData = img.getAttribute("data-choice");
-		}
-	})
+		targetData = clickFx(img, targetData);
+	}, true);
 })
+
+function clickFx(img, targetData) {
+	img.firstElementChild.classList.remove("opacity-0");
+	img.style.background = "initial";
+	let needImg = img.firstElementChild;
+	results(needImg);
+	if (targetData === null) {
+		targetData = img.firstElementChild.getAttribute("data-choice");
+		return targetData;
+	}
+}
 
 let chances = 2;
 
@@ -73,7 +80,7 @@ function results(img) {
 		restartBtn.classList.replace("opacity-0", "opacity-100");
 		restartBtn.classList.add("transform", "translate-y-4");
 	}
-} 
+}
 
 restartBtn.addEventListener("click", () => {
 	location.reload();
