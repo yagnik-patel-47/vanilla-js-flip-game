@@ -89,17 +89,17 @@ function shuffleArray(array) {
 
 createImgs();
 
-let chances = 2;
+let chances = 1;
+let targetData = null;
 
 const divs = document.querySelectorAll(".for-select");
-let targetData = null;
 divs.forEach(div => {
 	div.addEventListener("click", () => {
-		targetData = clickFx(div, targetData);
+		clickFx(div);
 	});
 });
 
-function clickFx(img, targetData) {
+function clickFx(img) {
 	img.firstElementChild.classList.remove("opacity-0");
 	img.style.background = "initial";
 	img.style.transition = "all .7s ease-in";
@@ -107,28 +107,30 @@ function clickFx(img, targetData) {
 		img.firstElementChild.classList.add("transition", "duration-500");
 	}
 	let needImg = img.firstElementChild;
-	results(needImg);
 	if (targetData === null) {
-		targetData = img.firstElementChild.getAttribute("data-choice");
-		return targetData;
+		targetData = img;
 	}
+	results(needImg);
 }
 
 function results(img) {
-	if (targetData && targetData === img.getAttribute("data-choice")) {
-		if (resultText.innerText !== "Losser🖕🏻") {
-			resultText.innerText = "Winner🏆";
-			resultText.classList.add("animate-bounce");
+	if (chances < 2 && chances > 0) {
+		if (img.parentElement !== targetData) {
+			if (img.getAttribute("data-choice") === targetData.firstElementChild.getAttribute("data-choice")) {
+				if (resultText.innerText !== "Losser🖕🏻") {
+					resultText.innerText = "Winner🏆";
+					resultText.classList.add("animate-bounce");
+				}
+				restartBtn.classList.replace("opacity-0", "opacity-100");
+				restartBtn.classList.add("transform", "translate-y-4");
+				let userData = JSON.parse(localStorage.getItem("flipData"));
+				let money = userData.money;
+				money++;
+				setMoney(userData, money);
+				userMoneyBlock.innerText = `${userData.money}$`
+			}
+			chances = chances - 1;
 		}
-		restartBtn.classList.replace("opacity-0", "opacity-100");
-		restartBtn.classList.add("transform", "translate-y-4");
-		let userData = JSON.parse(localStorage.getItem("flipData"));
-		let money = userData.money;
-		money++;
-		setMoney(userData, money);
-		userMoneyBlock.innerText = `${userData.money}$`
-	} else {
-		chances = chances - 1;
 	}
 	
 	if (chances === 0) {
@@ -151,7 +153,7 @@ restartBtn.addEventListener("click", () => {
 		eachDiv.firstElementChild.classList.add("opacity-0");
 		eachDiv.style.background = "linear-gradient(to bottom right, #059669, #34D399)";
 	});
-	chances = 2;
+	chances = 1;
 	resultText.innerText = "Click on any one";
 	targetData = null;
 	restartBtn.classList.replace("opacity-100", "opacity-0");
