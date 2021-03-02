@@ -14,6 +14,7 @@ const shop = document.querySelector("#shop");
 const shopBtn = document.querySelector("#shop-btn");
 const shopHamBurger = document.querySelector(".shop-ham-burger");
 const buyBtn = document.querySelectorAll(".shop-items button");
+const changeNameBtn = document.querySelector("#change-name");
 
 document.addEventListener("DOMContentLoaded", getUserData);
 window.addEventListener("load", () => {
@@ -44,13 +45,13 @@ function createImgs() {
 		eachDiv.firstElementChild.setAttribute("src", `img/${packOrigin}/${randomisedChoice[i]}.svg`);
 		eachDiv.firstElementChild.style.zIndex = "3";
 		eachDiv.firstElementChild.setAttribute("data-choice", randomisedChoice[i]);
-		eachDiv.firstElementChild.setAttribute("class", "w-1/2 xl:w-1/3 m-3 2xl:w-1/3 lg:w-1/3 opacity-0 transition duration-500");
+		eachDiv.firstElementChild.setAttribute("class", "w-1/2 lg:w-1/3 m-3 opacity-0 transition duration-500");
 		eachDiv.classList.add("for-select");
 		imgContainer.appendChild(eachDiv);
 	});
 }
 
-function createModal(modalText, inputDisplay, btnDisplay, btnText, sureBtnDisplay, sureBtnText) {
+function createModal(modalText, inputDisplay, btnDisplay, btnText, sureBtnDisplay, sureBtnText, topShift = 0.1) {
 	modal.classList.remove("hidden-modal");
 	const modalPara = document.createElement("p");
 	const modalInput = document.createElement("input");
@@ -92,6 +93,8 @@ function createModal(modalText, inputDisplay, btnDisplay, btnText, sureBtnDispla
 			modal.classList.replace("getIn", "getOut");
 			modal.addEventListener("animationend", fadeOutModal, true);
 		});
+	} if (topShift !== 0.1) {
+		modal.style.top = `${topShift}px`;
 	}
 }
 
@@ -241,6 +244,8 @@ function getUserData() {
 				setUserData(userData, needName);
 				setMoney(0);
 				setIconPack("superhero-pack");
+				packOrigin = JSON.parse(localStorage.getItem("flipData")).iconPack;
+				updateStuff();
 				modal.classList.replace("getIn", "getOut");
 				modal.addEventListener("animationend", () => {
 					modal.classList.add("hidden-modal");
@@ -345,13 +350,14 @@ buyBtn.forEach(btn => {
 		let userData = JSON.parse(localStorage.getItem("flipData"));
 		const price = btn.getAttribute("data-price");
 		let money = userData.money;
+		const topShift = window.pageYOffset;
 		if (packOrigin === btn.parentElement.firstElementChild.getAttribute("data-pack")) {
-			createModal("You already have same pack!", "none", "block", "Ok", "none", "");
+			createModal("You already have same pack!", "none", "block", "Ok", "none", "", topShift);
 		} else if (price > money) {
-			createModal("You didn't have sufficient money", "none", "block", "Ok", "none", "");
+			createModal("You didn't have sufficient money", "none", "block", "Ok", "none", "", topShift);
 		} else {
 			if (userData.money > price) {
-				createModal("Sure?", "none", "block", "No!", "block", "Yes.");
+				createModal("Sure?", "none", "block", "No!", "block", "Yes.", topShift);
 				document.querySelector(".sure-btn").addEventListener("click", () => {
 					packOrigin = btn.parentElement.firstElementChild.getAttribute("data-pack");
 					setIconPack(packOrigin);
@@ -377,5 +383,18 @@ buyBtn.forEach(btn => {
 				});
 			}
 		}
+	});
+});
+
+changeNameBtn.addEventListener("click", () => {
+	createModal("Enter New Name", "block", "block", "Submit", "none", "");
+	sideNav.classList.remove("side-nav-showed");
+	burgers[1].classList.remove("middle-rem");
+	burgers[0].classList.remove("top-bur");
+	burgers[2].classList.remove("bottom-bur");
+	document.querySelector(".modal-btn").addEventListener("click", () => {
+		let newName = document.querySelector(".emptyTaskModal input").value;
+		usernameBlock.innerText = newName;
+		setUserData(JSON.parse(localStorage.getItem("flipData")), newName);
 	});
 });
