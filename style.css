@@ -164,7 +164,7 @@ body,html {
 
 .side-nav-hidden {
 	position: absolute;
-	height: 100vh;
+	height: 100%;
 	width: 60%;
 	display: flex;
 	flex-direction: column;

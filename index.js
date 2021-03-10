@@ -179,7 +179,7 @@ function results(img) {
 					money++;
 					setMoney(money);
 				}
-				userMoneyBlock.innerText = `${userData.money}$`
+				userMoneyBlock.innerText = `${money}$`
 			}
 			chances = chances - 1;
 		}
@@ -233,6 +233,26 @@ function setIconPack(value) {
 	localStorage.setItem("flipData", JSON.stringify(userData));
 }
 
+function getPack(pack) {
+  if (pack === "default-pack") {
+		return ["ninja", "player", "coder", "ninja", "player", "coder"];
+  } else if (pack === "technology-pack") {
+		return ["satellite", "dish-tec", "router", "satellite", "dish-tec", "router"];
+	} else if (pack === "fruits-pack") {
+		return ["tomato", "orange", "strawberry", "tomato", "orange", "strawberry"];
+	} else if (pack === "superhero-pack") {
+		return ["deadpool", "spiderman", "wolverine", "deadpool", "spiderman", "wolverine"];
+	} else if (pack === "flower-pack") {
+		return ["hibiscus", "lotus", "rose", "hibiscus", "lotus", "rose"];
+	} else if (pack === "christmas-pack") {
+		return ["santa", "snowman", "chris-tree", "santa", "snowman", "chris-tree"];
+	} else if (pack === "musicInstrument-pack") {
+		return ["drum", "guitar", "maracas", "drum", "guitar", "maracas"];
+	} else {
+	  console.log("pack-problem");
+	}
+}
+
 function getUserData() {
 	let userData;
 	if (localStorage.getItem("flipData") === null) {
@@ -260,21 +280,7 @@ function getUserData() {
 		packOrigin = userData.iconPack;
 		usernameBlock.innerText = userData.name;
 		userMoneyBlock.innerText = `${userData.money}$`;
-		if (packOrigin === "default-pack") {
-			choices = ["ninja", "player", "coder", "ninja", "player", "coder"];
-		} else if (packOrigin === "technology-pack") {
-			choices = ["satellite", "dish-tec", "router", "satellite", "dish-tec", "router"];
-		} else if (packOrigin === "fruits-pack") {
-			choices = ["tomato", "orange", "strawberry", "tomato", "orange", "strawberry"];
-		} else if (packOrigin === "superhero-pack") {
-			choices = ["deadpool", "spiderman", "wolverine", "deadpool", "spiderman", "wolverine"];
-		} else if (packOrigin === "flower-pack") {
-			choices = ["hibiscus", "lotus", "rose", "hibiscus", "lotus", "rose"];
-		} else if (packOrigin === "christmas-pack") {
-			choices = ["santa", "snowman", "chris-tree", "santa", "snowman", "chris-tree"];
-		} else if (packOrigin === "musicInstrument-pack") {
-			choices = ["drum", "guitar", "maracas", "drum", "guitar", "maracas"];
-		}
+		choices = getPack(packOrigin);
 	}
 }
 
@@ -311,18 +317,19 @@ function getHint() {
 getHintBtn.addEventListener("click", () => {
 	let userData = JSON.parse(localStorage.getItem("flipData"));
 	let money = userData.money;
+	const topShift = window.pageYOffset;
 	if (canGetHint && money > 0) {
 		getHint();
 		hintUsed = true;
 		money--;
 		setMoney(money);
 	} else if (money < 1) {
-		createModal("Didn't have sufficient money", "none", "block", "Ok", "none", "");
+		createModal("Didn't have sufficient money", "none", "block", "Ok", "none", "", topShift);
 	} else {
 		if (targetData === null) {
-			createModal("Plz Flip First Card.", "none", "block", "Ok", "none", "");
+			createModal("Plz Flip First Card.", "none", "block", "Ok", "none", "", topShift);
 		} else if (!restartBtn.classList.contains("opacity-0")) {
-			createModal("Plz restart the game.", "none", "block", "Ok", "none", "");
+			createModal("Plz restart the game.", "none", "block", "Ok", "none", "", topShift);
 		}
 	}
 	sideNav.classList.remove("side-nav-showed");
@@ -361,25 +368,11 @@ buyBtn.forEach(btn => {
 				document.querySelector(".sure-btn").addEventListener("click", () => {
 					packOrigin = btn.parentElement.firstElementChild.getAttribute("data-pack");
 					setIconPack(packOrigin);
-					if (packOrigin === "default-pack") {
-						choices = ["ninja", "player", "coder", "ninja", "player", "coder"];
-					} else if (packOrigin === "technology-pack") {
-						choices = ["satellite", "dish-tec", "router", "satellite", "dish-tec", "router"];
-					} else if (packOrigin === "fruits-pack") {
-						choices = ["tomato", "orange", "strawberry", "tomato", "orange", "strawberry"];
-					} else if (packOrigin === "superhero-pack") {
-						choices = ["deadpool", "spiderman", "wolverine", "deadpool", "spiderman", "wolverine"];
-					} else if (packOrigin === "flower-pack") {
-						choices = ["hibiscus", "lotus", "rose", "hibiscus", "lotus", "rose"];
-					} else if (packOrigin === "christmas-pack") {
-						choices = ["santa", "snowman", "chris-tree", "santa", "snowman", "chris-tree"];
-					} else if (packOrigin === "musicInstrument-pack") {
-						choices = ["drum", "guitar", "maracas", "drum", "guitar", "maracas"];
-					}
-					updateStuff();
+					choices = getPack(packOrigin);
 					money = money - price;
 					setMoney(money);
-					userMoneyBlock.innerText = `${userData.money}$`;
+					updateStuff();
+					userMoneyBlock.innerText = `${money}$`;
 				});
 			}
 		}
