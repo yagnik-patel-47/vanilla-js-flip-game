@@ -176,7 +176,7 @@ function results(img) {
 	if (chances < 2 && chances > 0) {
 		if (img.parentElement !== firstCard) {
 			if (img.getAttribute("data-choice") === firstCard.firstElementChild.getAttribute("data-choice")) {
-				if (resultText.innerText !== "Losser🖕🏻") {
+				if (resultText.innerText !== "Losser🖕") {
 					resultText.innerText = "Winner🏆";
 					resultText.classList.add("animate-bounce");
 				}
