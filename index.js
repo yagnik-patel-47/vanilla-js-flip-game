@@ -50,7 +50,7 @@ function createImgs() {
 		eachDiv.firstElementChild.setAttribute("src", `img/${packOrigin}/${randomisedChoice[i]}.svg`);
 		eachDiv.firstElementChild.style.zIndex = "3";
 		eachDiv.firstElementChild.setAttribute("data-choice", randomisedChoice[i]);
-		eachDiv.firstElementChild.setAttribute("class", "w-1/2 lg:w-1/3 m-3 opacity-0 transition duration-500");
+		eachDiv.firstElementChild.setAttribute("class", "w-1/2 lg:w-1/3 xl:w-1/4 2xl:w-1/4 m-3 opacity-0 transition duration-500");
 		eachDiv.classList.add("for-select");
 		imgContainer.appendChild(eachDiv);
 	});
