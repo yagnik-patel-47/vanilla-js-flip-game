@@ -1,5 +1,6 @@
 "use strict";
 
+// Variables //
 const imgContainer = document.querySelector("#imgContainer");
 const resultText = document.querySelector("#result");
 const restartBtn = document.querySelector("#restart");
@@ -16,6 +17,7 @@ const shopHamBurger = document.querySelector(".shop-ham-burger");
 const buyBtn = document.querySelectorAll(".shop-items button");
 const changeNameBtn = document.querySelector("#change-name");
 
+// Startup Functions //
 document.addEventListener("DOMContentLoaded", getUserData);
 window.addEventListener("load", () => {
 	document.querySelector(".loaderbg").style.opacity = "0";
@@ -23,6 +25,7 @@ window.addEventListener("load", () => {
 	document.querySelector(".loaderbg").style.pointerEvents="none";
 });
 
+// hamBurger Menu Handling //
 hamBurger.addEventListener("click", () => {
 	sideNav.classList.toggle("side-nav-showed");
 	burgers[1].classList.toggle("middle-rem");
@@ -38,8 +41,10 @@ for (let i = 0; i < 6; i++) {
 	parentDiv.appendChild(img);
 	imgArr.push(parentDiv);
 }
+
 let randomisedChoice = shuffleArray(choices);
 
+// Creating Card Of Images Dynamically //
 function createImgs() {
 	imgArr.forEach((eachDiv, i) => {
 		eachDiv.firstElementChild.setAttribute("src", `img/${packOrigin}/${randomisedChoice[i]}.svg`);
@@ -51,6 +56,7 @@ function createImgs() {
 	});
 }
 
+// Page Madal Handling //
 function createModal(modalText, inputDisplay, btnDisplay, btnText, sureBtnDisplay, sureBtnText, topShift = 0.1) {
 	modal.classList.remove("hidden-modal");
 	const modalPara = document.createElement("p");
@@ -107,6 +113,7 @@ function fadeOutModal() {
 	});
 }
 
+// Algorithm For Shuffle An Choice Array //
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -119,10 +126,12 @@ function shuffleArray(array) {
 
 createImgs();
 
+// Updata Card On Restart //
 function updateStuff() {
+  choices = getPack(packOrigin);
 	randomisedChoice = shuffleArray(choices);
 	imgArr.forEach((eachDiv, i) => {
-		eachDiv.firstElementChild.setAttribute("src", `img/${packOrigin}/${randomisedChoice[i]}.svg`);
+		eachDiv.firstElementChild.setAttribute("src", `./img/${packOrigin}/${randomisedChoice[i]}.svg`);
 		eachDiv.firstElementChild.setAttribute("data-choice", randomisedChoice[i]);
 	});
 }
@@ -132,7 +141,7 @@ setTimeout(function() {
 }, 10);
 
 let chances = 1;
-let targetData = null;
+let firstCard = null;
 let hintUsed = false;
 
 const divs = document.querySelectorAll(".for-select");
@@ -142,6 +151,7 @@ divs.forEach(div => {
 	});
 });
 
+// Handling Card Click //
 function clickFx(img) {
 	img.firstElementChild.classList.remove("opacity-0");
 	img.style.background = "initial";
@@ -155,16 +165,17 @@ function clickFx(img) {
 		}
 	});
 	let needImg = img.firstElementChild;
-	if (targetData === null) {
-		targetData = img;
+	if (firstCard === null) {
+		firstCard = img;
 	}
 	results(needImg);
 }
 
+// Results on turn over //
 function results(img) {
 	if (chances < 2 && chances > 0) {
-		if (img.parentElement !== targetData) {
-			if (img.getAttribute("data-choice") === targetData.firstElementChild.getAttribute("data-choice")) {
+		if (img.parentElement !== firstCard) {
+			if (img.getAttribute("data-choice") === firstCard.firstElementChild.getAttribute("data-choice")) {
 				if (resultText.innerText !== "Losser🖕🏻") {
 					resultText.innerText = "Winner🏆";
 					resultText.classList.add("animate-bounce");
@@ -179,7 +190,7 @@ function results(img) {
 					money++;
 					setMoney(money);
 				}
-				userMoneyBlock.innerText = `${money}$`
+				userMoneyBlock.innerText = `${money}$`;
 			}
 			chances = chances - 1;
 		}
@@ -196,6 +207,7 @@ function results(img) {
 	}
 }
 
+// Restart Button Handling //
 restartBtn.addEventListener("click", () => {
 	randomisedChoice = shuffleArray(choices);
 	imgArr.forEach((eachDiv, i) => {
@@ -208,7 +220,7 @@ restartBtn.addEventListener("click", () => {
 	});
 	chances = 1;
 	resultText.innerText = "Click on any one";
-	targetData = null;
+	firstCard = null;
 	restartBtn.classList.replace("opacity-100", "opacity-0");
 	restartBtn.classList.remove("transform", "translate-y-4");
 	resultText.classList.remove("animate-bounce");
@@ -216,6 +228,7 @@ restartBtn.addEventListener("click", () => {
 	hintUsed = false;
 });
 
+// Saving Data In localStorage
 function setUserData(userData, value) {
 	userData.name = value; 
 	localStorage.setItem("flipData", JSON.stringify(userData));
@@ -233,6 +246,7 @@ function setIconPack(value) {
 	localStorage.setItem("flipData", JSON.stringify(userData));
 }
 
+// Image Pack For Player //
 function getPack(pack) {
   if (pack === "default-pack") {
 		return ["ninja", "player", "coder", "ninja", "player", "coder"];
@@ -249,10 +263,11 @@ function getPack(pack) {
 	} else if (pack === "musicInstrument-pack") {
 		return ["drum", "guitar", "maracas", "drum", "guitar", "maracas"];
 	} else {
-	  console.log("pack-problem");
+	  alert("Image Pack Problem");
 	}
 }
 
+// Getting Saved Data From localStorage //
 function getUserData() {
 	let userData;
 	if (localStorage.getItem("flipData") === null) {
@@ -286,8 +301,9 @@ function getUserData() {
 
 let canGetHint;
 
+// Able To Take Hint Or Not? //
 function hintGetable() {
-	if (targetData !== null && restartBtn.classList.contains("opacity-0")) {
+	if (firstCard !== null && restartBtn.classList.contains("opacity-0")) {
 		canGetHint = true;
 	} else {
 		canGetHint = false;
@@ -300,12 +316,13 @@ let needHint;
 
 function getHintCard() {
 	divs.forEach(div => {
-		if (div !== targetData && div.firstElementChild.getAttribute("data-choice") === targetData.firstElementChild.getAttribute("data-choice")) {
+		if (div !== firstCard && div.firstElementChild.getAttribute("data-choice") === firstCard.firstElementChild.getAttribute("data-choice")) {
 			needHint = div;
 		}
 	});
 }
 
+// Giving Hint //
 function getHint() {
 	getHintCard();
 	let hint = document.createElement("p");
@@ -326,7 +343,7 @@ getHintBtn.addEventListener("click", () => {
 	} else if (money < 1) {
 		createModal("Didn't have sufficient money", "none", "block", "Ok", "none", "", topShift);
 	} else {
-		if (targetData === null) {
+		if (firstCard === null) {
 			createModal("Plz Flip First Card.", "none", "block", "Ok", "none", "", topShift);
 		} else if (!restartBtn.classList.contains("opacity-0")) {
 			createModal("Plz restart the game.", "none", "block", "Ok", "none", "", topShift);
@@ -338,6 +355,7 @@ getHintBtn.addEventListener("click", () => {
 	burgers[2].classList.remove("bottom-bur");
 });
 
+// Shop hamBurger Menu Controll //
 shopHamBurger.addEventListener("click", () => {
 	shop.style.display = "none";
 });
@@ -379,6 +397,7 @@ buyBtn.forEach(btn => {
 	});
 });
 
+// Change Name Function //
 changeNameBtn.addEventListener("click", () => {
 	createModal("Enter New Name", "block", "block", "Submit", "none", "");
 	sideNav.classList.remove("side-nav-showed");

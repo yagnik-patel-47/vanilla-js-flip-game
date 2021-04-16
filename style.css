@@ -7,6 +7,11 @@ body,html {
 	box-sizing: border-box;
 }
 
+button {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 .for-select {
 	display: flex;
 	position: relative;
