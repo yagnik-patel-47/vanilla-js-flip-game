@@ -379,7 +379,7 @@ buyBtn.forEach(btn => {
 		if (packOrigin === btn.parentElement.firstElementChild.getAttribute("data-pack")) {
 			createModal("You already have same pack!", "none", "block", "Ok", "none", "", topShift);
 		} else if (price > money) {
-			createModal("You didn't have sufficient money", "none", "block", "Ok", "none", "", topShift);
+			createModal("You don't have sufficient money", "none", "block", "Ok", "none", "", topShift);
 		} else {
 			if (userData.money > price) {
 				createModal("Sure?", "none", "block", "No!", "block", "Yes.", topShift);
