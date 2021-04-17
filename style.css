@@ -1,10 +1,11 @@
-body,html {
-	margin: 0;
-	padding: 0;
+body,
+html {
+  margin: 0;
+  padding: 0;
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 button {
@@ -13,149 +14,155 @@ button {
 }
 
 .for-select {
-	display: flex;
-	position: relative;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background: linear-gradient(to bottom right, #059669, #34D399);
-	border-radius: 10px;
-	transition: all .7s ease-in;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #059669, #34d399);
+  border-radius: 10px;
+  transition: all 0.7s ease-in;
+  width: 20vw;
+}
+
+.cardImg {
+  width: 8vw;
+  height: auto;
 }
 
 @keyframes modalGetIn {
-	0% {
-		display: flex;
-		transform: translateY(-10%);
-		opacity: 0;
-		visibility: hidden;
-		transform: translateY(-2rem);
-		pointer-events: none;
-		backdrop-filter: blur(0) brightness(1);
-		-webkit-backdrop-filter: blur(0) brightness(1);
-	}
+  0% {
+    display: flex;
+    transform: translateY(-10%);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-2rem);
+    pointer-events: none;
+    backdrop-filter: blur(0) brightness(1);
+    -webkit-backdrop-filter: blur(0) brightness(1);
+  }
 
-	40% {
-		backdrop-filter: blur(4px) brightness(0.7);
-		-webkit-backdrop-filter: blur(4px) brightness(0.7);
-	}
+  40% {
+    backdrop-filter: blur(4px) brightness(0.7);
+    -webkit-backdrop-filter: blur(4px) brightness(0.7);
+  }
 
-	100% {
-		transform: translateY(0);
-		opacity: 1;
-		visibility: visible;
-		pointer-events: all;
-		backdrop-filter: blur(4px) brightness(0.7);
-		-webkit-backdrop-filter: blur(4px) brightness(0.7);
-	}
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    backdrop-filter: blur(4px) brightness(0.7);
+    -webkit-backdrop-filter: blur(4px) brightness(0.7);
+  }
 }
 
 @keyframes modalGetOut {
-	0% {
-		transform: translateY(0);
-		opacity: 1;
-		visibility: visible;
-		pointer-events: all;
-		backdrop-filter: blur(4px) brightness(0.7);
-		-webkit-backdrop-filter: blur(4px) brightness(0.7);
-	}
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    backdrop-filter: blur(4px) brightness(0.7);
+    -webkit-backdrop-filter: blur(4px) brightness(0.7);
+  }
 
-	80% {
-		backdrop-filter: blur(4px) brightness(0.7);
-		-webkit-backdrop-filter: blur(4px) brightness(0.7);
-	}
+  80% {
+    backdrop-filter: blur(4px) brightness(0.7);
+    -webkit-backdrop-filter: blur(4px) brightness(0.7);
+  }
 
-	100% {
-		display: flex;
-		transform: translateY(-10%);
-		opacity: 0;
-		visibility: hidden;
-		transform: translateY(-2rem);
-		pointer-events: none;
-		backdrop-filter: blur(0) brightness(1);
-		-webkit-backdrop-filter: blur(0) brightness(1);
-	}
+  100% {
+    display: flex;
+    transform: translateY(-10%);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-2rem);
+    pointer-events: none;
+    backdrop-filter: blur(0) brightness(1);
+    -webkit-backdrop-filter: blur(0) brightness(1);
+  }
 }
 
 .getOut {
-	animation: modalGetOut 1s ease-out 1;
-	animation-fill-mode: forward;
+  animation: modalGetOut 1s ease-out 1;
+  animation-fill-mode: forward;
 }
 
 .getIn {
-	animation: modalGetIn 1s ease-out 1;
-	animation-fill-mode: backward;
+  animation: modalGetIn 1s ease-out 1;
+  animation-fill-mode: backward;
 }
 
 .hidden-modal {
-	opacity: 0;
-	visibility: hidden;
-	pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .emptyTaskModal {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	left: 0;
-	top: 0;
-	z-index: 6;
-	backdrop-filter: blur(4px) brightness(0.7);
-	-webkit-backdrop-filter: blur(4px) brightness(0.7);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 6;
+  backdrop-filter: blur(4px) brightness(0.7);
+  -webkit-backdrop-filter: blur(4px) brightness(0.7);
 }
 
 .emptyTaskModal p {
-	background: linear-gradient(to bottom right, #059669, #34D399);
-	height: 6rem;
-	width: 17rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1rem;
-	border-radius: 1rem;
-	color: white;
+  background: linear-gradient(to bottom right, #059669, #34d399);
+  height: 6rem;
+  width: 17rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  border-radius: 1rem;
+  color: white;
 }
 
 .emptyTaskModal input {
-	backdrop-filter: blur(2px);
-	-webkit-backdrop-filter: blur(2px);
-	background: rgba(255, 255, 255, 0.4);
-	outline: none;
-	border: 3px solid #059669;
-	padding: 1rem 1.2rem;
-	border-radius: 1rem;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  background: rgba(255, 255, 255, 0.4);
+  outline: none;
+  border: 3px solid #059669;
+  padding: 1rem 1.2rem;
+  border-radius: 1rem;
 }
 
 .emptyTaskModal button {
-	padding: 0.8rem 1.5rem;
-	background: linear-gradient(to bottom right, #059669, #34D399);
-	outline: none;
-	color: white;
-	border-radius: 0.4rem;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(to bottom right, #059669, #34d399);
+  outline: none;
+  color: white;
+  border-radius: 0.4rem;
 }
 
 .loaderbg {
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	backdrop-filter: blur(4px) brightness(0.5);
-	-webkit-backdrop-filter: blur(4px) brightness(0.5);
-	transition: 0.7s ease;
-	z-index: 8;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(4px) brightness(0.5);
+  -webkit-backdrop-filter: blur(4px) brightness(0.5);
+  transition: 0.7s ease;
+  z-index: 8;
 }
 
 #loader {
   border: 12px solid #f3f3f3;
-  border-top: 12px solid #10B981;
+  border-top: 12px solid #10b981;
   border-radius: 50%;
   width: 4rem;
   height: 4rem;
@@ -163,93 +170,97 @@ button {
 }
 
 @keyframes loaderSpin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .side-nav-hidden {
-	position: absolute;
-	height: 100%;
-	width: 60%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	top: 0;
-	left: 0;
-	z-index: 4;
-	transform: translateX(-80vw);
-	background: rgba( 255, 255, 255, 0.20 );
-	box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-	backdrop-filter: blur(5px) brightness(0.9);
-	-webkit-backdrop-filter: blur(5px) brightness(0.9);
-	border-radius: 10px;
-	border: 2px solid rgba( 255, 255, 255, 0.18 );
-	border-top-right-radius: 1.2rem;
-	border-bottom-right-radius: 1.2rem;
-	transition: 0.4s ease;
+  position: absolute;
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  transform: translateX(-80vw);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5px) brightness(0.9);
+  -webkit-backdrop-filter: blur(5px) brightness(0.9);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-top-right-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem;
+  transition: 0.4s ease;
 }
 
 .side-nav-showed {
-	transform: translateX(0);
+  transform: translateX(0);
 }
 
 .side-nav-hidden li {
-	margin: 2rem 0;
-	text-align: center;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+  margin: 2rem 0;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .side-nav-hidden li button {
-	outline: none;
-	padding: .5rem 1rem;
-	border: 2px solid #059669;
-	border-radius: 0.5rem;
-	font-size: 0.8rem;
-	transition: 0.3s ease;
-	-webkit-tap-highlight-color: transparent;
-	text-transform: uppercase;
-	font-weight: bold;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border: 2px solid #059669;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  transition: 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .side-nav-hidden li button:hover {
-	background: #059669;
-	color: white;
+  background: #059669;
+  color: white;
 }
 
 .ham-burger {
-	display: block;
-	z-index: 5;
-	position: relative;
+  display: block;
+  z-index: 5;
+  position: relative;
 }
 
 .burger {
-	display: block;
-	height: 0.25rem;
-	width: 2.2rem;
-	background-color: #059669;
-	margin: .4rem 0;
-	border-radius: 5px;
-	-webkit-transition: .25s ease-in-out;
-  -moz-transition: .25s ease-in-out;
-  -o-transition: .25s ease-in-out;
-  transition: .25s ease-in-out;
+  display: block;
+  height: 0.25rem;
+  width: 2.2rem;
+  background-color: #059669;
+  margin: 0.4rem 0;
+  border-radius: 5px;
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
 }
 
 .burger:nth-child(1) {
-	transform-origin: left top;
+  transform-origin: left top;
 }
 
 .burger:nth-child(3) {
-	transform-origin: left bottom;
+  transform-origin: left bottom;
 }
 
 .middle-rem {
-	opacity: 0;
-  webkit-transform: translateX(-2rem);
+  opacity: 0;
+  -webkit-transform: translateX(-2rem);
   -moz-transform: translateX(-2rem);
   -o-transform: translateX(-2rem);
   transform: translateX(-2rem);
@@ -270,91 +281,104 @@ button {
 }
 
 .disabled-btn {
-	pointer-events: none;
-	opacity: 0.5;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .hint-text {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-transform: uppercase;
-	font-size: 0.8rem;
-	font-weight: 500;
-	color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: white;
 }
 
 #shop {
-	background: rgba( 255, 255, 255, 0.20 );
-	backdrop-filter: blur(5px) brightness(0.8);
-	-webkit-backdrop-filter: blur(5px) brightness(0.8);
-	z-index: 5;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px) brightness(0.8);
+  -webkit-backdrop-filter: blur(5px) brightness(0.8);
+  z-index: 5;
 }
 
 #shop .shop-items h3 {
-	font-size: 1rem;
-	margin: 1rem auto;
-	font-weight: 500;
+  font-size: 1rem;
+  margin: 1rem auto;
+  font-weight: 500;
 }
 
 #shop .shop-items {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	width: max-content;
-	position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: max-content;
+  position: relative;
 }
 
 #shop .shop-items button {
-	font-size: 0.8rem;
-	margin: 1rem auto;
-	padding: 0.5rem 1.5rem;
-	outline: none;
-	border: 2px solid rgb( 255, 255, 255);
-	border-radius: 0.5rem;
-	font-weight: 500;
+  font-size: 0.8rem;
+  margin: 1rem auto;
+  padding: 0.5rem 1.5rem;
+  outline: none;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  font-weight: 500;
 }
 
 .shop-burger {
-	display: block;
-	position: absolute;
-	height: 0.25rem;
-	width: 2.2rem;
-	background-color: #059669;
-	margin: .4rem 0;
-	border-radius: 5px;
+  display: block;
+  position: absolute;
+  height: 0.25rem;
+  width: 2.2rem;
+  background-color: #059669;
+  margin: 0.4rem 0;
+  border-radius: 5px;
 }
 
 .shop-burger:nth-child(1) {
-	-webkit-transform: rotate(40deg);
+  -webkit-transform: rotate(40deg);
   -moz-transform: rotate(40deg);
   -o-transform: rotate(40deg);
   transform: rotate(40deg);
 }
 
 .shop-burger:nth-child(2) {
-	-webkit-transform: rotate(-40deg);
+  -webkit-transform: rotate(-40deg);
   -moz-transform: rotate(-40deg);
   -o-transform: rotate(-40deg);
   transform: rotate(-40deg);
 }
 
 .shop-ham-burger {
-	position: absolute;
-	right: 4rem;
-	top: 1.5rem;
+  position: absolute;
+  right: 4rem;
+  top: 1.5rem;
 }
 
 #shop .shop-imgs {
-	width: 100%;
-	display: flex;
-	align-items: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 #shop .shop-imgs img {
-	width: 15vw;
-	height: auto;
-	margin: 0 0.4rem;
+  width: 15vw;
+  height: auto;
+  margin: 0 0.4rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .for-select {
+    width: initial;
+  }
+  .cardImg {
+    width: 20vw;
+    height: auto;
+  }
+  .side-nav-hidden {
+    width: 60%;
+  }
 }

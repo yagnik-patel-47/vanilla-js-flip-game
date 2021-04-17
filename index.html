@@ -1,104 +1,143 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="content-type" content="text/html"/>
-		<meta name="description" content="An awesome Flip Game made using Vanilla JavaScript, Tailwind CSS.">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" href="./img/favicon.png" type="image/png">
-		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="style.css" media="all" />
-		<title>Flip Game</title>
-	</head>
-	<body>
-		<header class="body-font bg-gradient-to-r from-green-200 to-transparent">
-		  <div class="container mx-auto flex flex-wrap p-5 justify-between items-center">
-		    <div class="ham-burger px-4">
-					<div class="burger"></div>
-					<div class="burger"></div>
-					<div class="burger"></div>
-				</div>
-		    <section id="side-nav" class="side-nav-hidden">
-					<ul>
-						<li class="user-name"></li>
-						<li><button id="change-name">Change Name?</button></li>
-						<li><button id="get-hint">Get Hint</button></li>
-						<li><button id="shop-btn">Shop</button></li>
-					</ul>
-				</section>
-				<span id="userMoney" class="text-sm font-semibold inline-block py-1 px-4 uppercase rounded text-green-600 uppercase last:mr-0 mr-1">0$</span>
-		  </div>
-		</header>
-		<section id="gameContainer" class="flex justify-center flex-col items-center p-8 lg:p-10 xl:p-12 2xl:p-15">
-			<h2 class="text-gray-700 text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl font-sans mb-8 lg:mb-12 xl:mb-14 2xl:mb-16 font-semibold">Flip Game</h2>
-			<div id="imgContainer" class="grid grid-rows-3 grid-cols-2 gap-2 lg:gap-4 xl:gap-6 2xl:gap-8 justify-items-center"></div>
-			<div id="resultContainer"><p id="result" class="my-8 text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl lg:my-10 xl:my-12 2xl:mb-14">Click on any one</p></div>
-			<button id="restart" class="text-white bg-gradient-to-br from-green-600 to-green-400 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded transition duration-1000 text-lg opacity-0 lg:text-xl xl:text-2xl 2xl:text-3xl pointer-events-none">Restart</button>
-		</section>
-		<section class="emptyTaskModal hidden-modal"></section>
-		<div class="loaderbg">
-			<div id="loader"></div>
-		</div>
-		<section id="shop" class="fade-out flex absolute min-h-screen w-full top-0 left-0 justify-center flex-wrap">
-			<div class="shop-items">
-				<h3 data-pack="superhero-pack">SuperHero Pack</h3>
-				<div class="shop-imgs">
-					<img src="./img/superhero-pack/deadpool.svg" alt="deadpool" />
-					<img src="./img/superhero-pack/spiderman.svg" alt="spiderman" />
-					<img src="./img/superhero-pack/wolverine.svg" alt="wolverine" />
-				</div>
-				<button data-price="20">20$</button>
-			</div>
-			<div class="shop-items">
-				<h3 data-pack="technology-pack">Technology Pack</h3>
-				<div class="shop-imgs">
-					<img src="./img/technology-pack/satellite.svg" alt="satellite" />
-					<img src="./img/technology-pack/dish-tec.svg" alt="dish" />
-					<img src="./img/technology-pack/router.svg" alt="router" />
-				</div>
-				<button data-price="20">20$</button>
-			</div>
-			<div class="shop-items">
-				<h3 data-pack="fruits-pack">Fruits Pack</h3>
-				<div class="shop-imgs">
-					<img src="./img/fruits-pack/tomato.svg" alt="tomato" />
-					<img src="./img/fruits-pack/orange.svg" alt="orange" />
-					<img src="./img/fruits-pack/strawberry.svg" alt="strawberry" />
-				</div>
-				<button data-price="10">10$</button>
-			</div>
-			<div class="shop-items">
-				<h3 data-pack="flower-pack">Flowers Pack</h3>
-				<div class="shop-imgs">
-					<img src="./img/flower-pack/hibiscus.svg" alt="hibiscus" />
-					<img src="./img/flower-pack/lotus.svg" alt="lotus" />
-					<img src="./img/flower-pack/rose.svg" alt="rose" />
-				</div>
-				<button data-price="10">10$</button>
-			</div>
-			<div class="shop-items">
-				<h3 data-pack="musicInstrument-pack">Music Instruments Pack</h3>
-				<div class="shop-imgs">
-					<img src="./img/musicInstrument-pack/drum.svg" alt="drum" />
-					<img src="./img/musicInstrument-pack/guitar.svg" alt="guitar" />
-					<img src="./img/musicInstrument-pack/maracas.svg" alt="maracas" />
-				</div>
-				<button data-price="25">25$</button>
-			</div>
-			<div class="shop-items">
-				<h3 data-pack="christmas-pack">Christmas Pack</h3>
-				<div class="shop-imgs">
-					<img src="./img/christmas-pack/santa.svg" alt="santa" />
-					<img src="./img/christmas-pack/chris-tree.svg" alt="Christmas Tree" />
-					<img src="./img/christmas-pack/snowman.svg" alt="snowman" />
-				</div>
-				<button data-price="30">30$</button>
-			</div>
-			<div class="shop-ham-burger">
-				<div class="shop-burger"></div>
-				<div class="shop-burger"></div>
-			</div>
-		</section>
-		<script src="index.js" type="text/javascript" charset="utf-8"></script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="content-type" content="text/html" />
+    <meta
+      name="description"
+      content="An awesome Flip Game made using Vanilla JavaScript, Tailwind CSS."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="./img/favicon.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.1/tailwind.min.css"
+      integrity="sha512-BAK6UB671tmfzrkeH1CacTvgHQ3aLAFnT2KsigdATsc5X7+3u42tb5vjmAoDiqtxphP5dNZ3cDygivTsGEJhGw=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" media="all" />
+    <title>Flip Game</title>
+  </head>
+  <body>
+    <header class="body-font bg-gradient-to-r from-green-200 to-transparent">
+      <div
+        class="container mx-auto flex flex-wrap p-5 justify-between items-center"
+      >
+        <div class="ham-burger px-4">
+          <div class="burger"></div>
+          <div class="burger"></div>
+          <div class="burger"></div>
+        </div>
+        <section id="side-nav" class="side-nav-hidden">
+          <ul>
+            <li class="user-name"></li>
+            <li><button id="change-name">Change Name?</button></li>
+            <li><button id="get-hint">Get Hint</button></li>
+            <li><button id="shop-btn">Shop</button></li>
+          </ul>
+        </section>
+        <span
+          id="userMoney"
+          class="text-sm font-semibold inline-block py-1 px-4 uppercase rounded text-green-600 uppercase last:mr-0 mr-1"
+          >0$</span
+        >
+      </div>
+    </header>
+    <section
+      id="gameContainer"
+      class="flex container justify-center flex-col items-center p-8 lg:p-10 xl:p-12 2xl:p-15"
+    >
+      <h2
+        class="text-gray-700 text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl font-sans mb-8 lg:mb-12 xl:mb-14 2xl:mb-16 font-semibold"
+      >
+        Flip Game
+      </h2>
+      <div
+        id="imgContainer"
+        class="grid grid-rows-3 grid-cols-2 gap-2 lg:px-1\5 xl:px-10 2xl:px-20 lg:gap-4 xl:gap-6 2xl:gap-8 justify-items-center"
+      ></div>
+      <div id="resultContainer">
+        <p
+          id="result"
+          class="my-8 text-2xl lg:text-2xl xl:text-2xl 2xl:text-3xl lg:my-10 xl:my-12 2xl:mb-14"
+        >
+          Click on any one
+        </p>
+      </div>
+      <button
+        id="restart"
+        class="text-white bg-gradient-to-br from-green-600 to-green-400 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded transition duration-1000 text-lg opacity-0 lg:text-xl xl:text-2xl 2xl:text-3xl pointer-events-none"
+      >
+        Restart
+      </button>
+    </section>
+    <section class="emptyTaskModal hidden-modal"></section>
+    <div class="loaderbg">
+      <div id="loader"></div>
+    </div>
+    <section
+      id="shop"
+      class="fade-out flex absolute min-h-screen w-full top-0 left-0 justify-center flex-wrap"
+    >
+      <div class="shop-items">
+        <h3 data-pack="superhero-pack">SuperHero Pack</h3>
+        <div class="shop-imgs">
+          <img src="./img/superhero-pack/deadpool.svg" alt="deadpool" />
+          <img src="./img/superhero-pack/spiderman.svg" alt="spiderman" />
+          <img src="./img/superhero-pack/wolverine.svg" alt="wolverine" />
+        </div>
+        <button data-price="20">20$</button>
+      </div>
+      <div class="shop-items">
+        <h3 data-pack="technology-pack">Technology Pack</h3>
+        <div class="shop-imgs">
+          <img src="./img/technology-pack/satellite.svg" alt="satellite" />
+          <img src="./img/technology-pack/dish-tec.svg" alt="dish" />
+          <img src="./img/technology-pack/router.svg" alt="router" />
+        </div>
+        <button data-price="20">20$</button>
+      </div>
+      <div class="shop-items">
+        <h3 data-pack="fruits-pack">Fruits Pack</h3>
+        <div class="shop-imgs">
+          <img src="./img/fruits-pack/tomato.svg" alt="tomato" />
+          <img src="./img/fruits-pack/orange.svg" alt="orange" />
+          <img src="./img/fruits-pack/strawberry.svg" alt="strawberry" />
+        </div>
+        <button data-price="10">10$</button>
+      </div>
+      <div class="shop-items">
+        <h3 data-pack="flower-pack">Flowers Pack</h3>
+        <div class="shop-imgs">
+          <img src="./img/flower-pack/hibiscus.svg" alt="hibiscus" />
+          <img src="./img/flower-pack/lotus.svg" alt="lotus" />
+          <img src="./img/flower-pack/rose.svg" alt="rose" />
+        </div>
+        <button data-price="10">10$</button>
+      </div>
+      <div class="shop-items">
+        <h3 data-pack="musicInstrument-pack">Music Instruments Pack</h3>
+        <div class="shop-imgs">
+          <img src="./img/musicInstrument-pack/drum.svg" alt="drum" />
+          <img src="./img/musicInstrument-pack/guitar.svg" alt="guitar" />
+          <img src="./img/musicInstrument-pack/maracas.svg" alt="maracas" />
+        </div>
+        <button data-price="25">25$</button>
+      </div>
+      <div class="shop-items">
+        <h3 data-pack="christmas-pack">Christmas Pack</h3>
+        <div class="shop-imgs">
+          <img src="./img/christmas-pack/santa.svg" alt="santa" />
+          <img src="./img/christmas-pack/chris-tree.svg" alt="Christmas Tree" />
+          <img src="./img/christmas-pack/snowman.svg" alt="snowman" />
+        </div>
+        <button data-price="30">30$</button>
+      </div>
+      <div class="shop-ham-burger">
+        <div class="shop-burger"></div>
+        <div class="shop-burger"></div>
+      </div>
+    </section>
+    <script src="index.js" type="text/javascript" charset="utf-8"></script>
+  </body>
 </html>
