@@ -32,19 +32,10 @@ button {
 
 @keyframes modalGetIn {
   0% {
-    display: flex;
-    transform: translateY(-10%);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-2rem);
     pointer-events: none;
-    backdrop-filter: blur(0) brightness(1);
-    -webkit-backdrop-filter: blur(0) brightness(1);
-  }
-
-  40% {
-    backdrop-filter: blur(4px) brightness(0.7);
-    -webkit-backdrop-filter: blur(4px) brightness(0.7);
   }
 
   100% {
@@ -52,8 +43,6 @@ button {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
-    backdrop-filter: blur(4px) brightness(0.7);
-    -webkit-backdrop-filter: blur(4px) brightness(0.7);
   }
 }
 
@@ -63,35 +52,24 @@ button {
     opacity: 1;
     visibility: visible;
     pointer-events: all;
-    backdrop-filter: blur(4px) brightness(0.7);
-    -webkit-backdrop-filter: blur(4px) brightness(0.7);
-  }
-
-  80% {
-    backdrop-filter: blur(4px) brightness(0.7);
-    -webkit-backdrop-filter: blur(4px) brightness(0.7);
   }
 
   100% {
-    display: flex;
-    transform: translateY(-10%);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-2rem);
     pointer-events: none;
-    backdrop-filter: blur(0) brightness(1);
-    -webkit-backdrop-filter: blur(0) brightness(1);
   }
 }
 
 .getOut {
   animation: modalGetOut 1s ease-out 1;
-  animation-fill-mode: forward;
+  animation-fill-mode: forwards;
 }
 
 .getIn {
   animation: modalGetIn 1s ease-out 1;
-  animation-fill-mode: backward;
+  animation-fill-mode: backwards;
 }
 
 .hidden-modal {
@@ -375,8 +353,8 @@ button {
     width: initial;
   }
   .cardImg {
-    width: 20vw;
-    height: auto;
+    width: 30vw;
+    height: 20vw;
   }
   .side-nav-hidden {
     width: 60%;

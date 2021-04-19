@@ -89,13 +89,16 @@ function createModal(
   modalBtn.classList.add("modal-btn");
   modalBtn.innerText = btnText;
   modalSureBtn.innerText = sureBtnText;
-  modal.classList.add("getIn");
+  modalPara.classList.add("getIn");
+  modalInput.classList.add("getIn");
+  modalBtn.classList.add("getIn");
+  modalSureBtn.classList.add("getIn");
   modal.appendChild(modalPara);
   modal.appendChild(modalInput);
   modal.appendChild(modalBtn);
   modal.appendChild(modalSureBtn);
   modal.removeEventListener("animationend", fadeOutModal, true);
-  modal.addEventListener("animationstart", () => {
+  modalPara.addEventListener("animationstart", () => {
     modalSureBtn.style.pointerEvents = "none";
     modalBtn.style.pointerEvents = "none";
   });
@@ -105,14 +108,20 @@ function createModal(
   });
   if (btnDisplay !== "none" || "") {
     modalBtn.addEventListener("click", () => {
-      modal.classList.replace("getIn", "getOut");
-      modal.addEventListener("animationend", fadeOutModal, true);
+      modalPara.classList.replace("getIn", "getOut");
+      modalInput.classList.replace("getIn", "getOut");
+      modalBtn.classList.replace("getIn", "getOut");
+      modalSureBtn.classList.replace("getIn", "getOut");
+      modalPara.addEventListener("animationend", fadeOutModal, true);
     });
   }
   if (sureBtnDisplay !== "none" || "") {
     modalSureBtn.addEventListener("click", () => {
-      modal.classList.replace("getIn", "getOut");
-      modal.addEventListener("animationend", fadeOutModal, true);
+      modalPara.classList.replace("getIn", "getOut");
+      modalInput.classList.replace("getIn", "getOut");
+      modalBtn.classList.replace("getIn", "getOut");
+      modalSureBtn.classList.replace("getIn", "getOut");
+      modalPara.addEventListener("animationend", fadeOutModal, true);
     });
   }
   if (topShift !== 0.1) {
@@ -223,7 +232,7 @@ function results(img) {
 
   if (chances === 0) {
     if (resultText.innerText !== "Winner🏆") {
-      resultText.innerText = "Losser🖕🏻";
+      resultText.innerText = "Losser🖕";
       resultText.classList.add("animate-bounce");
     }
     restartBtn.classList.replace("opacity-0", "opacity-100");
@@ -257,7 +266,7 @@ restartBtn.addEventListener("click", () => {
   hintUsed = false;
 });
 
-// Saving Data In localStorage
+// Saving Data In localStorage //
 function setUserData(userData, value) {
   userData.name = value;
   localStorage.setItem("flipData", JSON.stringify(userData));
