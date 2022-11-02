@@ -55,7 +55,7 @@ function createImgs() {
     eachDiv.firstElementChild.setAttribute("data-choice", randomisedChoice[i]);
     eachDiv.firstElementChild.setAttribute(
       "class",
-      "w-1/2 lg:w-1/3 xl:w-1/8 2xl:w-1/4 m-3 opacity-0 transition duration-500 cardImg"
+      "w-3/4 lg:w-1/3 xl:w-1/4 m-3 opacity-0 transition duration-500 cardImg"
     );
     eachDiv.classList.add("for-select");
     imgContainer.appendChild(eachDiv);
@@ -486,9 +486,8 @@ buyBtn.forEach((btn) => {
       if (userData.money > price) {
         createModal("Sure?", "none", "block", "No!", "block", "Yes.", topShift);
         document.querySelector(".sure-btn").addEventListener("click", () => {
-          packOrigin = btn.parentElement.firstElementChild.getAttribute(
-            "data-pack"
-          );
+          packOrigin =
+            btn.parentElement.firstElementChild.getAttribute("data-pack");
           setIconPack(packOrigin);
           choices = getPack(packOrigin);
           money = money - price;

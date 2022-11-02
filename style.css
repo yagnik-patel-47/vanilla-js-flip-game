@@ -353,7 +353,7 @@ button {
     width: initial;
   }
   .cardImg {
-    width: 30vw;
+    width: 30vw !important;
     height: 20vw;
   }
   .side-nav-hidden {
